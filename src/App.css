@@ -1,38 +1,265 @@
-.App {
+body{
+  background-color: rgb(244, 245, 248);
+  margin: 0;
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Adjust as needed */
+}
+
+.container {
+  padding: 10px;
+  width: 360px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    align-items: center;
+  }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .container {
+    width: 100%;
+    margin: 0 5px 0 10px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
+  background-color: white; 
+  padding:10px 0px 10px 30px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: flex; 
+  align-items: flex-end; 
+}
+
+/* Dropdown button styling */
+.dropdown button {
+  background-color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  /* Add margin on the right side of the button */
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.sett_logo{
+  display: flex;
+  align-items: center;
+  height: 36px;
+  margin: 0;
+}
+
+.sett_logo img{
+  margin-right: 5px;
+  height: 20px;
+  width: 20px;
+}
+
+.display_content_divider{
+  display: flex;
+  margin: 0 0 0 20px;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.display_content_divider p{
+  color: rgb(180, 180, 180);
+  margin-right: 50px;
+}
+
+ /* Popover container */
+ .popover {
+  position: relative;
+  display: inline-block;
+}
+
+/* Popover button styling */
+.popover button {
+  background-color: white;
+  padding: 0 10px 0 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0;
+  box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Popover content (hidden by default) */
+.popover-content {
+  display: none;
+  position: absolute;
+  background-color:white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Show the popover content on button hover */
+.popover:hover .popover-content {
+  display: block;
+}
+
+/* Card styling */
+/* Card styling */
+.card {
+  /* width: 300px; */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px 2px 0 2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Container styling using Flexbox */
+.container1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:10px 15px 5px 10px;
+  margin: 0;
+}
+
+/* Text styling */
+.start-align {
+  margin: 0; /* Remove default margin */
+  color: gray;
+}
+
+/* Profile logo styling */
+.profile_logo img {
+  width: 30px; /* Adjust the width as needed */
+  height: auto;
+}
+
+/* Container styling */
+.card .container2 {
+  display: flex;
+  margin: 0 10px 5px 10px;
+}
+
+.card .title_class h5{
+  margin: 5px 2px 5px 10px;
+  height: 50px;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+}
+.card .title_class h5 img{
+  margin-right: 5px;
+  height: 15px;
+  width: 15px;
+}
+
+
+/* Button styling */
+.rounded-button {
+  border: none;
+  border-radius: 5px; /* Set your preferred background color */
+  padding: 5px 5px 5px 0; /* Adjust padding as needed */
+  margin-right: 10px; /* Add margin between buttons */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.rounded-button p{
+  margin:0 0 0 5px;
+  color: grey;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* Image (logo) styling */
+.c_c2_logo {
+  width: 15px; /* Set the width of the image */
+  height: 15px; /* Set the height of the image */
 }
+
+.group_name{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px;
+  /* padding: 10px; */
+}
+
+.group_name .left-section {
+  display: flex;
+  align-items: center;
+}
+
+.group_name .right-section {
+  display: flex;
+  align-items: center;
+}
+
+.group_name .left-section .icon {
+  margin-right: 5px;
+  padding: 5px; 
+  height: 20px;
+  width: 20px;
+}
+
+.group_name .left-section .icon {
+  margin-right: 5px;
+  padding: 5px; 
+  height: 20px;
+  width: 20px;
+}
+.group_name .right-section .icon {
+  margin-right: 0px;
+  padding: 2px; 
+  height: 20px;
+  width: 20px;
+}
+.group_name .grey-counter {
+  color:gray; /* Text color for the counter */
+  margin-left: 10px;
+}
+
+
