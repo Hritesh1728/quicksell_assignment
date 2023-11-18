@@ -9,7 +9,7 @@ body{
   align-items: flex-start;
   margin: 0;
   padding: 0;
-  height: 100vh; /* Adjust as needed */
+  height: 100vh; 
 }
 
 .container {
@@ -56,7 +56,6 @@ body{
   cursor: pointer;
   margin-right: 15px;
   box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  /* Add margin on the right side of the button */
 }
 
 /* Dropdown content (hidden by default) */
@@ -146,9 +145,7 @@ body{
 }
 
 /* Card styling */
-/* Card styling */
 .card {
-  /* width: 300px; */
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -167,13 +164,13 @@ body{
 
 /* Text styling */
 .start-align {
-  margin: 0; /* Remove default margin */
+  margin: 0; 
   color: gray;
 }
 
 /* Profile logo styling */
 .profile_logo img {
-  width: 30px; /* Adjust the width as needed */
+  width: 30px; 
   height: auto;
 }
 
@@ -200,9 +197,9 @@ body{
 /* Button styling */
 .rounded-button {
   border: none;
-  border-radius: 5px; /* Set your preferred background color */
-  padding: 5px 5px 5px 0; /* Adjust padding as needed */
-  margin-right: 10px; /* Add margin between buttons */
+  border-radius: 5px; 
+  padding: 5px 5px 5px 0; 
+  margin-right: 10px; 
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -214,10 +211,10 @@ body{
 }
 
 
-/* Image (logo) styling */
+
 .c_c2_logo {
-  width: 15px; /* Set the width of the image */
-  height: 15px; /* Set the height of the image */
+  width: 15px; 
+  height: 15px; 
 }
 
 .group_name{
@@ -225,7 +222,6 @@ body{
   justify-content: space-between;
   align-items: center;
   margin: 2px;
-  /* padding: 10px; */
 }
 
 .group_name .left-section {
@@ -244,13 +240,6 @@ body{
   height: 20px;
   width: 20px;
 }
-
-.group_name .left-section .icon {
-  margin-right: 5px;
-  padding: 5px; 
-  height: 20px;
-  width: 20px;
-}
 .group_name .right-section .icon {
   margin-right: 0px;
   padding: 2px; 
@@ -258,8 +247,24 @@ body{
   width: 20px;
 }
 .group_name .grey-counter {
-  color:gray; /* Text color for the counter */
+  color:gray; 
   margin-left: 10px;
+}
+
+.initials {
+  width: 20px;
+  height: 20px;
+  padding: 2px; 
+  margin-right: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #3498db;
+  color: #fff; 
 }
 
 

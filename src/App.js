@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 
 const Card = (props) => {
+  const randomColor = getRandomColor();
   return (
     <div className="card">
       <div className='container1'>
         <p className="start-align">{props.id}</p>
         <div className='profile_logo'>
-          {props.imageUrl !== '' ? <img src={props.imageUrl} alt="profile_logo" /> : ""}
+          {props.imageUrl !== '' ? <div className="initials" style={{ backgroundColor: randomColor, color: '#fff' }}>{(props.imageUrl.split(' ')[0].slice(0, 1)).toUpperCase() + (props.imageUrl.split(' ')[1] ? props.imageUrl.split(' ')[1].slice(0, 1) : '').toUpperCase()}</div> : ""}
         </div>
       </div>
       <div className='title_class'>
@@ -46,10 +47,15 @@ const fetchData = async () => {
 };
 
 const GroupName = (props) => {
+  const randomColor = getRandomColor();
   return (
     <div className="group_name">
       <div className="left-section">
-        <img src={props.group_icon} alt="profile_logo" className="icon" />
+        {props.group_icon != '' ? (
+          <img src={props.group_icon} alt="profile_logo" className="icon" />
+        ) : (
+          <div className="initials" style={{ backgroundColor: randomColor, color: '#fff' }}>{(props.name.split(' ')[0].slice(0, 1)).toUpperCase() + (props.name.split(' ')[1] ? props.name.split(' ')[1].slice(0, 1) : '').toUpperCase()}</div>
+        )}
         <p>{props.name}</p>
         <div className="grey-counter">{props.count}</div>
       </div>
@@ -59,6 +65,15 @@ const GroupName = (props) => {
       </div>
     </div>
   );
+};
+
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 };
 
 function App() {
@@ -163,14 +178,32 @@ function App() {
     }
   }
 
+
   //Priority Type Variable
   const priority_type = {
+    '0': 'No priority',
     '4': 'Urgent',
     '3': 'High',
     '2': 'Medium',
-    '1': 'Low',
-    '0': 'No priority',
+    '1': 'Low'
   };
+
+  const usersById = {};
+  if(data.users){
+    data.users.forEach(user => {
+      usersById[user.id] = user;
+    });
+  }
+
+
+  useEffect(() => {
+    document.title = 'Kanban Board | QuickSell Assignment';
+
+    // Optionally, you can reset the title when the component unmounts
+    return () => {
+      document.title = 'Kanban Board';
+    };
+  }, []);
 
   return (
     <>
@@ -195,7 +228,7 @@ function App() {
                   id={groupedTickets['Backlog'][ticket].id}
                   title={groupedTickets['Backlog'][ticket].title}
                   tag={groupedTickets['Backlog'][ticket].tag}
-                  imageUrl={logos.profile_logo}
+                  imageUrl={usersById[groupedTickets['Backlog'][ticket]['userId']]['name']}
                   title_logo=''
                   signal_icon={groupedTickets['Backlog'][ticket].priority === 0 ? logos.no_priority_logo : (groupedTickets['Backlog'][ticket].priority === 1 ? logos.low_logo : (groupedTickets['Backlog'][ticket].priority === 2 ? logos.medium_logo : (groupedTickets['Backlog'][ticket].priority === 3 ? logos.signal_logo : logos.urgent_logo)))}
                 />
@@ -212,7 +245,7 @@ function App() {
                   id={groupedTickets['Todo'][ticket].id}
                   title={groupedTickets['Todo'][ticket].title}
                   tag={groupedTickets['Todo'][ticket].tag}
-                  imageUrl={logos.profile_logo}
+                  imageUrl={usersById[groupedTickets['Todo'][ticket]['userId']]['name']}
                   title_logo=''
                   signal_icon={groupedTickets['Todo'][ticket].priority === 0 ? logos.no_priority_logo : (groupedTickets['Todo'][ticket].priority === 1 ? logos.low_logo : (groupedTickets['Todo'][ticket].priority === 2 ? logos.medium_logo : (groupedTickets['Todo'][ticket].priority === 3 ? logos.signal_logo : logos.urgent_logo)))}
                 />
@@ -229,7 +262,7 @@ function App() {
                   id={groupedTickets['In progress'][ticket].id}
                   title={groupedTickets['In progress'][ticket].title}
                   tag={groupedTickets['In progress'][ticket].tag}
-                  imageUrl={logos.profile_logo}
+                  imageUrl={usersById[groupedTickets['In progress'][ticket]['userId']]['name']}
                   title_logo=''
                   signal_icon={groupedTickets['In progress'][ticket].priority === 0 ? logos.no_priority_logo : (groupedTickets['In progress'][ticket].priority === 1 ? logos.low_logo : (groupedTickets['In progress'][ticket].priority === 2 ? logos.medium_logo : (groupedTickets['In progress'][ticket].priority === 3 ? logos.signal_logo : logos.urgent_logo)))}
                 />
@@ -246,7 +279,7 @@ function App() {
                   id={groupedTickets['Done'][ticket].id}
                   title={groupedTickets['Done'][ticket].title}
                   tag={groupedTickets['Done'][ticket].tag}
-                  imageUrl={logos.profile_logo}
+                  imageUrl={usersById[groupedTickets['Done'][ticket]['userId']]['name']}
                   title_logo=''
                   signal_icon={groupedTickets['Done'][ticket].priority === 0 ? logos.no_priority_logo : (groupedTickets['Done'][ticket].priority === 1 ? logos.low_logo : (groupedTickets['Done'][ticket].priority === 2 ? logos.medium_logo : (groupedTickets['Done'][ticket].priority === 3 ? logos.signal_logo : logos.urgent_logo)))}
                 />
@@ -263,7 +296,7 @@ function App() {
                   id={groupedTickets['Canceled'][ticket].id}
                   title={groupedTickets['Canceled'][ticket].title}
                   tag={groupedTickets['Canceled'][ticket].tag}
-                  imageUrl={logos.profile_logo}
+                  imageUrl={usersById[groupedTickets['Canceled'][ticket]['userId']]['name']}
                   title_logo=''
                   signal_icon={groupedTickets['Canceled'][ticket].priority === 0 ? logos.no_priority_logo : (groupedTickets['Canceled'][ticket].priority === 1 ? logos.low_logo : (groupedTickets['Canceled'][ticket].priority === 2 ? logos.medium_logo : (groupedTickets['Canceled'][ticket].priority === 3 ? logos.signal_logo : logos.urgent_logo)))}
                 />
@@ -278,7 +311,7 @@ function App() {
                 <GroupName
                   name={data['users'][user]['name']}
                   count={groupedTickets[data['users'][user]['id']] != null ? Object.keys(groupedTickets[data['users'][user]['id']]).length.toString() : '0'}
-                  group_icon={logos.profile_logo}
+                  group_icon=''
                 />
                 {groupedTickets[data['users'][user]['id']] != null ? Object.keys(groupedTickets[data['users'][user]['id']]).map((ticket) => (
                   <Card
@@ -296,7 +329,7 @@ function App() {
           : ""}
         {selectedGroup === 'priority' ?
           <div className="app">
-            {Object.keys(groupedTickets).map(priority => (
+            {['0', '4', '3', '2', '1'].map(priority => (
               <div key={priority} className="container">
                 <GroupName
                   name={priority_type[priority]}
@@ -308,7 +341,7 @@ function App() {
                     id={groupedTickets[priority][ticket].id}
                     title={groupedTickets[priority][ticket].title}
                     tag={groupedTickets[priority][ticket].tag}
-                    imageUrl={logos.profile_logo}
+                    imageUrl={usersById[groupedTickets[priority][ticket].userId]['name']}
                     title_logo={groupedTickets[priority][ticket].status === 'Todo' ? logos.todo_logo : (groupedTickets[priority][ticket].status === 'Backlog' ? logos.backlog_logo : (groupedTickets[priority][ticket].status === 'In progress' ? logos.inprogress_logo : (groupedTickets[priority][ticket].status === 'Done' ? logos.done_logo : logos.canceled_logo)))}
                     signal_icon=''
                   />
