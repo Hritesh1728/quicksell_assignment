@@ -151,6 +151,7 @@ body{
   overflow: hidden;
   margin: 10px 2px 0 2px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
 /* Container styling using Flexbox */
